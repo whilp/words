@@ -1,10 +1,10 @@
 export PATH := $(PWD)/bin:$(PATH)
 
 # License: BSD3
-URL := https://raw.githubusercontent.com/trezor/python-mnemonic/master/mnemonic/wordlist/english.txt
+URL := https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt
 
 wordlist.csv: wordlist.txt
-	python3 ./tag.py < $< > $@
+	awk '{print $$2}' $< | python3 ./tag.py > $@
 
 wordlist.txt:
 	curl -o $@ $(URL)
